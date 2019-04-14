@@ -12,19 +12,20 @@ python3 manage.py runserver
 ------
 
 ## API
-Endpoint: 127.0.0.1:8000/analysis/
-Method: POST
-Parameters:
-..* link `(string: query link)`
+Endpoint: 127.0.0.1:8000/analysis/  
+Method: POST  
+Parameters:  
+* link `(string: query link)`
 
 ### Response
-⋅⋅* `200` - OK, result dictionary  
-⋅⋅* `400` - Bad request, error message  
+* `200` - OK, result dictionary  
+* `400` - Bad request, error message  
 
 ### API Example
-```
-POST http://127.0.0.1:8000/analysis/ 
-```
+![alt text](https://github.com/HsiuYa0/web-page-analysis/blob/master/result1.png)  
+
+![alt text](https://github.com/HsiuYa0/web-page-analysis/blob/master/result2.png)  
+
 ------
 ### Assumption and Solution 
 Assume the valid input format is starting either http:// or https://.  
