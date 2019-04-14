@@ -9,7 +9,8 @@ Run server on 127.0.0.1:8000
 ```python3
 python3 manage.py runserver
 ```
-=====
+------
+
 ## API
 Endpoint: 127.0.0.1:8000/analysis/
 Method: POST
@@ -24,7 +25,7 @@ Parameters:
 ```
 POST http://127.0.0.1:8000/analysis/ 
 ```
-====
+------
 ### Assumption and Solution 
 Assume the valid input format is starting either http:// or https://.
 The server first try to connect the provided link, if failed, return 400.
@@ -32,7 +33,7 @@ Otherwise, use BeautifulSoup to parse the html document.
 
 
 
-=====
+------
 ### Acknowledgement
 Failed to use pymemcache to implement cache in django. Instead, use a dictionary to implement cache. Whenever there is a API call, service will update the cache first.
 
