@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'analysis'
+    'analysis',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,14 @@ TEMPLATES = [
         },
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:8000',
+        'TIMEOUT': 60 * 60 * 24
+    }
+}
 
 WSGI_APPLICATION = 'service.wsgi.application'
 
