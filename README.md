@@ -18,8 +18,8 @@ Parameters:
 ..* link `(string: query link)`
 
 ### Response
-..* `200` - OK, result dictionary
-..* `400` - Bad request, error message
+⋅⋅* `200` - OK, result dictionary  
+⋅⋅* `400` - Bad request, error message  
 
 ### API Example
 ```
@@ -27,11 +27,9 @@ POST http://127.0.0.1:8000/analysis/
 ```
 ------
 ### Assumption and Solution 
-Assume the valid input format is starting either http:// or https://.
-The server first try to connect the provided link, if failed, return 400.
-Otherwise, use BeautifulSoup to parse the html document.
-
-
+Assume the valid input format is starting either http:// or https://.  
+The server first try to connect the provided link, if failed, return 400.  
+Otherwise, use BeautifulSoup to parse the html document.  
 
 ------
 ### Acknowledgement
