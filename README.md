@@ -44,7 +44,7 @@ For checking the existance of the login form, only search `form` tag with `id` c
   
 ------
 ### Acknowledgement
-Failed to use pymemcache to implement cache in django. Instead, use a dictionary to implement cache. Whenever there is a API call, service will update the cache first.
+Failed to use pymemcache to implement cache in django. Instead, use a dictionary to implement cache. Whenever there is a API call, service will update the cache first.  
 Total spend approixmate 6 hr (mostly on solving pymemcache).  
 
 
