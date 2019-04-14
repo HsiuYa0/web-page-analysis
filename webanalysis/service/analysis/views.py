@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.cache import cache
+#from django.core.cache import cache
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -7,18 +7,32 @@ from bs4 import BeautifulSoup
 import requests
 import re
 from collections import defaultdict
-import json
+import json, time
 
+CACHE = defaultdict()
 @csrf_exempt
 def analysis_link(request):
-    print('receive request')
     if request.method == 'POST':
         req = json.loads(request.body)
         if 'link' in req:
-            link = req['link']
-            result = cache.get_or_set(link, do_analysis(link), timeout=60 * 60 * 24)
+            link = req['link'].strip()
+
+            # implementing 24 hr cache
+            t = time.time()
+            for k, v in list(CACHE.items()):
+                if t - v['time'] > 60 * 60 * 24:
+                    CACHE.pop(k)
+
+            #result = cache.get(link)
+            if link not in CACHE:
+                result = do_analysis(link)
+                CACHE[link] = {'data':result, 'time':time.time()}
+                #cache.set(link, result, timeout= 60 * 60 * 24)
+            else:
+                result = CACHE[link]['data']
+
+
             if 'message' not in result:
-                print(result)
                 return JsonResponse(result, status=200)
             else:
                 return JsonResponse(result, status=400)
@@ -29,8 +43,7 @@ def analysis_link(request):
 
 # assume link format: http://domain/.../.../ or https://domain/.../...
 def do_analysis(link):
-    print('do analysis')
-    
+    print('not in cache, do analysis')
     # parse domain
     if 'http://' in link:
         domain = link.replace('http://', '').split('/')[0]
